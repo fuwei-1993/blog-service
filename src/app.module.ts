@@ -5,6 +5,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
 import { entitiesPath } from './config/entities.config'
+import { LoginController } from './controller/login/login.controller'
 import database from './config/database.config'
 
 @Module({
@@ -25,7 +26,7 @@ import database from './config/database.config'
       inject: [ConfigService],
     }),
   ],
-  controllers: [AppController],
+  controllers: [AppController, LoginController],
   providers: [AppService],
 })
 export class AppModule {}

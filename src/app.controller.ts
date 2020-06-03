@@ -7,8 +7,6 @@ export class AppController {
 
   @Get()
   getHello(): string {
-    console.log(process.env.DATABASE_PASSWORD)
-
     return this.appService.getHello()
   }
 }
