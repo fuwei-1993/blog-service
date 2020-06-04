@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common'
-import { AppController } from './app.controller'
 import { AppService } from './app.service'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
 
 import { entitiesPath } from './config/entities.config'
-import { LoginController } from './controller/login/login.controller'
 import database from './config/database.config'
+import { AdminModule } from './modules/admin/admin.module'
+import { BlogModule } from './modules/blog/blog.module'
 
 @Module({
   imports: [
@@ -25,8 +25,11 @@ import database from './config/database.config'
       },
       inject: [ConfigService],
     }),
+    AdminModule,
+    BlogModule,
   ],
-  controllers: [AppController, LoginController],
+  controllers: [],
   providers: [AppService],
+  exports: [AppService],
 })
 export class AppModule {}
