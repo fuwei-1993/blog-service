@@ -18,7 +18,7 @@ import { BlogModule } from './modules/blog/blog.module'
       ],
       useFactory: async (config: ConfigService) => {
         return {
-          ...config.get('database'),
+          ...config.get<object>('database'),
           entities: [entitiesPath],
           synchronize: true,
         }
