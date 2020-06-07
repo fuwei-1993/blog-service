@@ -1,7 +1,8 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
+import { Article } from './article.entity'
 
-@Entity('users')
-export class Users {
+@Entity('user')
+export class User {
   @PrimaryGeneratedColumn({
     type: 'int',
     name: 'id',
@@ -9,14 +10,17 @@ export class Users {
   })
   id: number
 
-  @Column('varchar', {
+  @Column({
+    type: 'varchar',
     length: 50,
     comment: '用户名',
     nullable: false,
+    name: 'username',
   })
   username: string
 
-  @Column('varchar', {
+  @Column({
+    type: 'varchar',
     length: 50,
     comment: 'uuid',
     primary: true,
@@ -25,14 +29,17 @@ export class Users {
   })
   uuid: string
 
-  @Column('varchar', {
+  @Column({
+    type: 'varchar',
     length: 50,
     comment: '用户密码',
+    name: 'password',
     nullable: false,
   })
   password: string
 
-  @Column('varchar', {
+  @Column({
+    type: 'varchar',
     nullable: true,
     length: 11,
     name: 'mobile',
@@ -40,7 +47,8 @@ export class Users {
   })
   mobile: string | null
 
-  @Column('varchar', {
+  @Column({
+    type: 'varchar',
     nullable: true,
     length: 50,
     name: 'email',
@@ -48,7 +56,14 @@ export class Users {
   })
   email: string | null
 
-  @Column('timestamp', {
+  @OneToMany(
+    () => Article,
+    article => article.user,
+  )
+  articles: Article[]
+
+  @Column({
+    type: 'timestamp',
     nullable: false,
     default: () => 'CURRENT_TIMESTAMP',
     name: 'created_at',
@@ -56,7 +71,8 @@ export class Users {
   })
   createdAt: Date
 
-  @Column('timestamp', {
+  @Column({
+    type: 'timestamp',
     nullable: false,
     default: () => 'CURRENT_TIMESTAMP',
     name: 'updated_at',
