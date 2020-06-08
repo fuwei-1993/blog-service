@@ -1,5 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'
 import { User } from './user.entity'
+import { DateBase } from './date'
+import { Category } from './category.entity'
 
 enum Status {
   PUBLIC = 'public',
@@ -7,7 +9,7 @@ enum Status {
 }
 
 @Entity('article')
-export class Article {
+export class Article extends DateBase {
   @PrimaryGeneratedColumn({
     type: 'int',
     name: 'id',
@@ -64,21 +66,9 @@ export class Article {
   )
   user: User
 
-  @Column({
-    type: 'timestamp',
-    nullable: false,
-    default: () => 'CURRENT_TIMESTAMP',
-    name: 'created_at',
-    comment: '创建时间',
-  })
-  createdAt: Date
-
-  @Column({
-    type: 'timestamp',
-    nullable: false,
-    default: () => 'CURRENT_TIMESTAMP',
-    name: 'updated_at',
-    comment: '最后更新时间',
-  })
-  updatedAt: Date
+  @ManyToOne(
+    () => Category,
+    category => category.articles,
+  )
+  category: Category
 }

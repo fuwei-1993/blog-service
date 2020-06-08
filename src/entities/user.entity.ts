@@ -1,8 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
 import { Article } from './article.entity'
+import { DateBase } from './date'
+import { Category } from './category.entity'
 
 @Entity('user')
-export class User {
+export class User extends DateBase {
   @PrimaryGeneratedColumn({
     type: 'int',
     name: 'id',
@@ -37,7 +39,6 @@ export class User {
     nullable: false,
   })
   password: string
-
   @Column({
     type: 'varchar',
     nullable: true,
@@ -62,21 +63,9 @@ export class User {
   )
   articles: Article[]
 
-  @Column({
-    type: 'timestamp',
-    nullable: false,
-    default: () => 'CURRENT_TIMESTAMP',
-    name: 'created_at',
-    comment: '创建时间',
-  })
-  createdAt: Date
-
-  @Column({
-    type: 'timestamp',
-    nullable: false,
-    default: () => 'CURRENT_TIMESTAMP',
-    name: 'updated_at',
-    comment: '最后更新时间',
-  })
-  updatedAt: Date
+  @OneToMany(
+    () => Category,
+    category => category.user,
+  )
+  categories: Category[]
 }
