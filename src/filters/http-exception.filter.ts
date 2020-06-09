@@ -17,19 +17,21 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const request = context.getRequest<Request>()
     const response = context.getResponse<Response>()
 
-    console.log(exception.message)
+    console.log(exception)
 
     const status =
       exception instanceof HttpException
         ? exception.getStatus()
         : HttpStatus.INTERNAL_SERVER_ERROR
 
+    const errorMsg = exception.getResponse() ?? exception.message
+
     const errorResponse = {
       method: request.method,
       statusCode: status,
       path: request.url,
       timestamp: new Date().toLocaleDateString(),
-      errorMsg: exception.message,
+      errorMsg,
       success: false,
       result: {
         data: null,

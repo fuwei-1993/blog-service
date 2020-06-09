@@ -8,7 +8,6 @@ export class LoginController {
   // @ApiForbiddenResponse({ description: 'Forbidden.' })
   @UseGuards(LocalAuthGuard)
   login(@Body() userInfo: Request['body']) {
-    console.log(345)
     return userInfo
   }
 }

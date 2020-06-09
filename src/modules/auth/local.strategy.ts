@@ -22,6 +22,6 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
       return user
     }
 
-    throw new UnauthorizedException()
+    throw new UnauthorizedException({ description: '你妈喊你回去吃饭' })
   }
 }
