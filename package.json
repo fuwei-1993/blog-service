@@ -4,11 +4,11 @@
   "description": "a blog backend service",
   "author": "fuwei",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format": "prettier --parser=typescript  --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "db": "rm -rf entities & npx typeorm-model-generator -h localhost -d test -p 3306 -u root -x root -e mysql -o entities --noConfig true --ce pascal --cp camel",
     "start:dev": "nest start --watch",
@@ -81,7 +81,7 @@
     "testEnvironment": "node"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
+    "*.{ts}": [
       "npm run format",
       "npm run lint"
     ]
