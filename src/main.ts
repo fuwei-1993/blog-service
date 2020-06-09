@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import { TimeoutInterceptor } from './interceptors/timeout.interceptor'
-import { HttpExceptionFilter } from './filter/http-exception.filter'
+import { HttpExceptionFilter } from './filters/http-exception.filter'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
 async function bootstrap() {
