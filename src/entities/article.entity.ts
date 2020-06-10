@@ -1,15 +1,17 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm'
+import {
+  UpdateDateColumn,
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  CreateDateColumn,
+} from 'typeorm'
 import { User } from './user.entity'
-import { DateBase } from './date'
 import { Category } from './category.entity'
-
-enum Status {
-  PUBLIC = 'public',
-  DRAFT = 'draft',
-}
+import { ArticleStatus } from 'src/controllers/article/interface/article.interface'
 
 @Entity('article')
-export class Article extends DateBase {
+export class Article {
   @PrimaryGeneratedColumn({
     type: 'int',
     name: 'id',
@@ -34,8 +36,8 @@ export class Article extends DateBase {
 
   @Column({
     type: 'enum',
-    enum: Status,
-    default: Status.PUBLIC,
+    enum: ArticleStatus,
+    default: ArticleStatus.PUBLIC,
     comment: '文章状态',
     name: 'status',
   })
@@ -60,6 +62,13 @@ export class Article extends DateBase {
     comments: number
   }
 
+  @Column({
+    type: 'varchar',
+    name: 'thumb',
+    comment: '文章略缩图',
+  })
+  thumb: string
+
   @ManyToOne(
     () => User,
     user => user.articles,
@@ -71,4 +80,18 @@ export class Article extends DateBase {
     category => category.articles,
   )
   category: Category
+
+  @CreateDateColumn({
+    type: 'timestamp',
+    name: 'created_at',
+    comment: '创建时间',
+  })
+  createdAt: Date
+
+  @UpdateDateColumn({
+    type: 'timestamp',
+    name: 'updated_at',
+    comment: '最后更新时间',
+  })
+  updatedAt: Date
 }

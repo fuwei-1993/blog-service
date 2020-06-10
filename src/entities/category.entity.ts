@@ -4,8 +4,9 @@ import {
   Column,
   ManyToOne,
   OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn,
 } from 'typeorm'
-import { DateBase } from './date'
 import { User } from './user.entity'
 import { Article } from './article.entity'
 
@@ -15,7 +16,7 @@ enum Sort {
 }
 
 @Entity('category')
-export class Category extends DateBase {
+export class Category {
   @PrimaryGeneratedColumn({
     type: 'int',
     name: 'id',
@@ -55,4 +56,18 @@ export class Category extends DateBase {
     article => article.category,
   )
   articles: Article[]
+
+  @CreateDateColumn({
+    type: 'timestamp',
+    name: 'created_at',
+    comment: '创建时间',
+  })
+  createdAt: Date
+
+  @UpdateDateColumn({
+    type: 'timestamp',
+    name: 'updated_at',
+    comment: '最后更新时间',
+  })
+  updatedAt: Date
 }

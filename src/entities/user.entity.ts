@@ -1,10 +1,16 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
+import {
+  UpdateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  CreateDateColumn,
+} from 'typeorm'
 import { Article } from './article.entity'
-import { DateBase } from './date'
 import { Category } from './category.entity'
 
 @Entity('user')
-export class User extends DateBase {
+export class User {
   @PrimaryGeneratedColumn({
     type: 'int',
     name: 'id',
@@ -68,4 +74,18 @@ export class User extends DateBase {
     category => category.user,
   )
   categories: Category[]
+
+  @CreateDateColumn({
+    type: 'timestamp',
+    name: 'created_at',
+    comment: '创建时间',
+  })
+  createdAt: Date
+
+  @UpdateDateColumn({
+    type: 'timestamp',
+    name: 'updated_at',
+    comment: '最后更新时间',
+  })
+  updatedAt: Date
 }
