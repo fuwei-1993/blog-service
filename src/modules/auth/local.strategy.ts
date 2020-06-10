@@ -18,6 +18,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     password: string,
   ): Promise<HttpException | TUser.User> {
     const user = await this.authService.validateUser(username, password)
+    console.log(user, 'fuwei')
     if (user) {
       return user
     }

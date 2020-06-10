@@ -3,11 +3,15 @@ import { AppModule } from './app.module'
 import { TimeoutInterceptor } from './interceptors/timeout.interceptor'
 import { HttpExceptionFilter } from './filters/http-exception.filter'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
+import { TransformInterceptor } from './interceptors/transform.interceptor'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
 
-  app.useGlobalInterceptors(new TimeoutInterceptor())
+  app.useGlobalInterceptors(
+    new TimeoutInterceptor(),
+    new TransformInterceptor(),
+  )
   app.useGlobalFilters(new HttpExceptionFilter())
 
   const options = new DocumentBuilder()

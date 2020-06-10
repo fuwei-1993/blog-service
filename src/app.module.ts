@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm'
 import { entitiesPath } from './config/entities.config'
 import database from './config/database.config'
 import { rootModules } from './modules'
+import { APP_INTERCEPTOR } from '@nestjs/core'
+import { LoggingInterceptor } from './interceptors/logging.interceptor'
 
 @Module({
   imports: [
@@ -26,7 +28,13 @@ import { rootModules } from './modules'
     ...rootModules,
   ],
   controllers: [],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: LoggingInterceptor,
+    },
+  ],
   exports: [AppService],
 })
 export class AppModule {}
