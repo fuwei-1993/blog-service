@@ -9,11 +9,7 @@ import {
 } from 'typeorm'
 import { User } from './user.entity'
 import { Article } from './article.entity'
-
-enum Sort {
-  DESC = 'DESC',
-  ASC = 'ASC',
-}
+import { CategorySort } from 'src/controllers/category/interface/category.interface'
 
 @Entity('category')
 export class Category {
@@ -27,7 +23,9 @@ export class Category {
   @Column({
     type: 'varchar',
     name: 'name',
+    length: 50,
     comment: '分类名称',
+    unique: true,
   })
   name: string
 
@@ -40,7 +38,7 @@ export class Category {
 
   @Column({
     type: 'enum',
-    enum: Sort,
+    enum: CategorySort,
     comment: '分类排序',
   })
   sort: string

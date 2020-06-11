@@ -4,6 +4,7 @@ import { TimeoutInterceptor } from './interceptors/timeout.interceptor'
 import { HttpExceptionFilter } from './filters/http-exception.filter'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { TransformInterceptor } from './interceptors/transform.interceptor'
+import { ValidationPipe } from './pipes/validation.pipe'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
@@ -13,6 +14,7 @@ async function bootstrap() {
     new TransformInterceptor(),
   )
   app.useGlobalFilters(new HttpExceptionFilter())
+  app.useGlobalPipes(new ValidationPipe())
 
   const options = new DocumentBuilder()
     .setTitle('Blog Example')

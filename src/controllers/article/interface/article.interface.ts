@@ -14,6 +14,6 @@ export interface IArticleInfo {
     comments: number
   }
   thumb?: string
-  // userId?: User
-  // categoryId?: Category
+  userId?: number
+  categoryId?: number
 }
