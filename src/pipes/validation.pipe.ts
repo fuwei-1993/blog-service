@@ -14,10 +14,9 @@ export class ValidationPipe implements PipeTransform {
       return value
     }
     const errors = await validate(plainToClass(metatype, value))
-    console.log(plainToClass(metatype, value), errors)
 
     if (errors.length > 0) {
-      throw new BadRequestException('哈哈')
+      throw new BadRequestException({ description: '请求参数错误' })
     }
     return value
   }

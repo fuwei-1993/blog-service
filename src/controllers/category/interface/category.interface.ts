@@ -8,4 +8,6 @@ export interface ICategory {
   description: string
   sort: CategorySort
   userId?: number
+  createdAt?: Date
+  updatedAt?: Date
 }
