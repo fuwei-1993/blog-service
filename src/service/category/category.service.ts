@@ -3,6 +3,8 @@ import { Repository } from 'typeorm'
 import { Category } from 'src/entities/category.entity'
 import { CategoryCreateDto } from 'src/controllers/category/dto/category-create.dto'
 import { InjectRepository } from '@nestjs/typeorm'
+import { plainToClass } from 'class-transformer'
+import { CategoryResDto } from 'src/controllers/category/dto/category-res.dto'
 
 @Injectable()
 export class CategoryService {
@@ -21,7 +23,12 @@ export class CategoryService {
     await this.categoryRepository.save(category)
   }
 
-  async findCategories(): Promise<Category[] | null> {
-    return await this.categoryRepository.find()
+  async findCategories(): Promise<CategoryResDto[] | null> {
+    const categories: Category[] = await this.categoryRepository.find()
+    return categories.map(category => plainToClass(CategoryResDto, category))
+  }
+
+  async updateCategory(id, updateCategoryDto) {
+    await this.categoryRepository.update(id, updateCategoryDto)
   }
 }

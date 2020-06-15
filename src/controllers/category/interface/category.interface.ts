@@ -4,9 +4,9 @@ export enum CategorySort {
 }
 
 export interface ICategory {
-  name: string
-  description: string
-  sort: CategorySort
+  name?: string
+  description?: string
+  sort?: CategorySort
   userId?: number
   createdAt?: Date
   updatedAt?: Date

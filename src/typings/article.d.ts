@@ -1,1 +1,1 @@
-declare namespace TArticle {}
+declare namespace NArticle {}
