@@ -8,7 +8,7 @@ import {
   // IsOptional,
 } from 'class-validator'
 
-export class CategoryDto implements ICategory {
+export class CategoryCreateDto implements ICategory {
   @ApiProperty({ required: true, description: '文章分类名称' })
   @IsString({ message: '必须为字符串' })
   @IsNotEmpty({ message: '不能为空' })

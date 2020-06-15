@@ -5,9 +5,10 @@ import {
   ApiBody,
   ApiOkResponse,
 } from '@nestjs/swagger'
-import { CategoryDto } from './dto/category.dto'
+import { CategoryCreateDto } from './dto/category-create.dto'
 import { CategoryService } from 'src/service/category/category.service'
 import { Category } from 'src/entities/category.entity'
+import { CategoryResDto } from './dto/category-res.dto'
 
 @ApiTags('博客文章分类')
 @Controller('category')
@@ -19,17 +20,17 @@ export class CategoryController {
     description: '创建文章分类',
   })
   @ApiBody({
-    type: CategoryDto,
+    type: CategoryCreateDto,
     description: '创建文章参数',
   })
   // @ApiOkResponse({ type: CategoryResDto })
   // @HttpCode(HttpStatus.CREATED)
-  async createCategory(@Body() category: CategoryDto) {
+  async createCategory(@Body() category: CategoryCreateDto) {
     await this.categoryService.createCategory(category)
   }
 
   @Get('find')
-  @ApiOkResponse({ type: [Category], description: '查询全部文章分类' })
+  @ApiOkResponse({ type: [CategoryResDto], description: '查询全部文章分类' })
   async findCategories(): Promise<Category[]> {
     return await this.categoryService.findCategories()
   }
