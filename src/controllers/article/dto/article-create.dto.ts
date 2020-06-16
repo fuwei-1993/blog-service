@@ -4,7 +4,7 @@ import {
   TArticleMeta,
 } from '../interface/article.interface'
 import { ApiPropertyOptional, ApiProperty } from '@nestjs/swagger'
-import { IsEnum, IsOptional, IsString, IsObject } from 'class-validator'
+import { IsEnum, IsOptional, IsObject } from 'class-validator'
 import { ArticleMetaDto } from './article-meta.dto'
 
 export class ArticleCreateDto implements IArticleInfo {
@@ -19,12 +19,11 @@ export class ArticleCreateDto implements IArticleInfo {
     enum: ArticleStatus,
     default: ArticleStatus.PUBLIC,
   }) //可选
-  @IsString()
   @IsEnum(ArticleStatus, {
     message: `文章状态必须为： ${ArticleStatus.DRAFT} 或 ${ArticleStatus.PUBLIC}`,
   })
   @IsOptional()
-  status: ArticleStatus
+  status?: ArticleStatus
 
   @ApiProperty({ description: '是否发布' })
   publish: boolean

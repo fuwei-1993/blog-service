@@ -59,6 +59,6 @@ export class CategoryController {
   @Delete(':id')
   @ApiOkResponse({ type: SuccessResDto })
   async deleteCategoryById(@Param('id') id: number) {
-    await this.categoryService.deleteCategory(id)
+    await this.categoryService.deleteCategoryById(id)
   }
 }

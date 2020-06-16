@@ -3,6 +3,7 @@ import {
   PipeTransform,
   ArgumentMetadata,
   BadRequestException,
+  Logger,
 } from '@nestjs/common'
 import { validate } from 'class-validator'
 import { plainToClass } from 'class-transformer'
@@ -16,6 +17,7 @@ export class ValidationPipe implements PipeTransform {
     const errors = await validate(plainToClass(metatype, value))
 
     if (errors.length > 0) {
+      Logger.log(errors, '请求参数错误')
       throw new BadRequestException({ description: '请求参数错误' })
     }
     return value

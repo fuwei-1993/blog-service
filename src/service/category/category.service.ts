@@ -33,7 +33,7 @@ export class CategoryService {
     await this.categoryRepository.update(id, categoryUpdateDto)
   }
 
-  async deleteCategory(id: number) {
+  async deleteCategoryById(id: number) {
     await this.categoryRepository.delete(id)
   }
 }
