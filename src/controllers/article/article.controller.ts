@@ -1,10 +1,14 @@
-import { Controller, Get, Post } from '@nestjs/common'
-import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger'
-import { ArticleInfoDto } from './dto/article.dto'
+import { Controller, Get, Post, Body } from '@nestjs/common'
+import { ApiCreatedResponse, ApiTags, ApiBody } from '@nestjs/swagger'
+import { ArticleCreateDto } from './dto/article-create.dto'
+import { SuccessResDto } from 'src/common/dto'
+import { ArticleService } from 'src/service/article/article.service'
 
 @ApiTags('博客文章')
 @Controller('article')
 export class ArticleController {
+  constructor(private readonly articleService: ArticleService) {}
+
   @Get('find')
   findArticles() {
     return 'test'
@@ -12,10 +16,14 @@ export class ArticleController {
 
   @Post('create')
   @ApiCreatedResponse({
-    type: ArticleInfoDto,
+    type: SuccessResDto,
+    description: '创建文章成功',
+  })
+  @ApiBody({
+    type: ArticleCreateDto,
     description: '创建文章',
   })
-  create() {
-    return
+  async create(@Body() article: ArticleCreateDto) {
+    await this.articleService.createArticle(article)
   }
 }

@@ -5,6 +5,7 @@ import { CategoryCreateDto } from 'src/controllers/category/dto/category-create.
 import { InjectRepository } from '@nestjs/typeorm'
 import { plainToClass } from 'class-transformer'
 import { CategoryResDto } from 'src/controllers/category/dto/category-res.dto'
+import { CategoryUpdateDto } from 'src/controllers/category/dto/category-update.dto'
 
 @Injectable()
 export class CategoryService {
@@ -28,7 +29,11 @@ export class CategoryService {
     return categories.map(category => plainToClass(CategoryResDto, category))
   }
 
-  async updateCategory(id, updateCategoryDto) {
-    await this.categoryRepository.update(id, updateCategoryDto)
+  async updateCategory(id: number, categoryUpdateDto: CategoryUpdateDto) {
+    await this.categoryRepository.update(id, categoryUpdateDto)
+  }
+
+  async deleteCategory(id: number) {
+    await this.categoryRepository.delete(id)
   }
 }

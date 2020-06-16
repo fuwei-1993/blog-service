@@ -1,26 +1,28 @@
 import { ICategory, CategorySort } from '../interface/category.interface'
-import { ApiProperty } from '@nestjs/swagger'
+import { ApiPropertyOptional } from '@nestjs/swagger'
+import { Transform } from 'class-transformer'
 
 export class CategoryResDto implements ICategory {
-  @ApiProperty({ required: false })
+  @ApiPropertyOptional()
   name: string
 
-  @ApiProperty({ required: false })
+  @ApiPropertyOptional()
   id: number
 
-  @ApiProperty({ required: false })
+  @ApiPropertyOptional()
   description: string
 
-  @ApiProperty({ required: false })
+  @ApiPropertyOptional()
   sort: CategorySort
 
-  @ApiProperty({ required: false })
+  @ApiPropertyOptional()
   userId: number
 
-  @ApiProperty({ required: false })
-  // @Transform(value => )
+  @ApiPropertyOptional()
+  @Transform(date => +new Date(date))
   createdAt: Date
 
-  @ApiProperty({ required: false })
+  @ApiPropertyOptional()
+  @Transform(date => +new Date(date))
   updatedAt: Date
 }

@@ -3,17 +3,19 @@ export enum ArticleStatus {
   DRAFT = 'draft',
 }
 
+export type TArticleMeta = {
+  views: number
+  likes: number
+  comments: number
+}
 export interface IArticleInfo {
-  title: string
-  keyword: string
-  status: ArticleStatus
-  publish: boolean
-  meta: {
-    views: number
-    likes: number
-    comments: number
-  }
+  title?: string
+  keyword?: string
+  status?: ArticleStatus
+  publish?: boolean
+  meta?: TArticleMeta
   thumb?: string
   userId?: number
   categoryId?: number
+  content?: string
 }

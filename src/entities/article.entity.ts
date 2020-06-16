@@ -41,7 +41,7 @@ export class Article {
     comment: '文章状态',
     name: 'status',
   })
-  status: number
+  status: ArticleStatus
 
   @Column({
     type: 'boolean',
@@ -80,6 +80,13 @@ export class Article {
     category => category.articles,
   )
   category: Category
+
+  @Column({
+    type: 'varchar',
+    comment: '文章内容',
+    name: 'content',
+  })
+  content: string
 
   @CreateDateColumn({
     type: 'timestamp',

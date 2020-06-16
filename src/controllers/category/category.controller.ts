@@ -1,4 +1,12 @@
-import { Controller, Post, Body, Get, Patch, Param } from '@nestjs/common'
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common'
 import {
   ApiTags,
   ApiCreatedResponse,
@@ -18,13 +26,13 @@ export class CategoryController {
 
   @Post('create')
   @ApiCreatedResponse({
+    type: SuccessResDto,
     description: '创建文章分类',
   })
   @ApiBody({
     type: CategoryCreateDto,
     description: '创建文章分类参数',
   })
-  @ApiOkResponse({ type: SuccessResDto })
   async createCategory(@Body() category: CategoryCreateDto) {
     await this.categoryService.createCategory(category)
   }
@@ -46,5 +54,11 @@ export class CategoryController {
     @Body() category: CategoryUpdateDto,
   ) {
     await this.categoryService.updateCategory(id, category)
+  }
+
+  @Delete(':id')
+  @ApiOkResponse({ type: SuccessResDto })
+  async deleteCategoryById(@Param('id') id: number) {
+    await this.categoryService.deleteCategory(id)
   }
 }
