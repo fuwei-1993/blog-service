@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param } from '@nestjs/common'
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common'
 import {
   ApiCreatedResponse,
   ApiTags,
@@ -9,6 +17,7 @@ import { ArticleCreateDto } from './dto/article-create.dto'
 import { SuccessResDto } from 'src/common/dto'
 import { ArticleService } from 'src/service/article/article.service'
 import { ArticleUpdateDto } from './dto/article-update.dto'
+import { ArticleResDto } from './dto/article-res.dto'
 
 @ApiTags('博客文章')
 @Controller('article')
@@ -16,8 +25,12 @@ export class ArticleController {
   constructor(private readonly articleService: ArticleService) {}
 
   @Get('find')
-  findArticles() {
-    return 'test'
+  @ApiOkResponse({
+    type: [ArticleResDto],
+    description: '查询所有文章',
+  })
+  findArticles(): Promise<ArticleResDto[]> {
+    return this.articleService.findArticles()
   }
 
   @Post('create')
@@ -43,5 +56,11 @@ export class ArticleController {
   })
   async update(@Param('id') id: number, @Body() article: ArticleUpdateDto) {
     await this.articleService.updateArticle(id, article)
+  }
+
+  @Delete(':id')
+  @ApiOkResponse({ type: SuccessResDto })
+  async deleteById(@Param('id') id: number) {
+    this.articleService.deleteArticleById(id)
   }
 }

@@ -1,8 +1,8 @@
-import { ApiProperty } from '@nestjs/swagger'
+import { ApiPropertyOptional } from '@nestjs/swagger'
 
 export class SuccessResDto implements NResponse.Success {
-  @ApiProperty({ required: false })
+  @ApiPropertyOptional()
   code: 200
-  @ApiProperty({ required: false })
+  @ApiPropertyOptional()
   success: true
 }
