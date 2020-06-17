@@ -7,6 +7,7 @@ import {
 } from '@nestjs/common'
 import { validate } from 'class-validator'
 import { plainToClass } from 'class-transformer'
+import { handlerRequestError } from 'src/utils'
 
 @Injectable()
 export class ValidationPipe implements PipeTransform {
@@ -18,7 +19,10 @@ export class ValidationPipe implements PipeTransform {
 
     if (errors.length > 0) {
       Logger.log(errors, '请求参数错误')
-      throw new BadRequestException({ description: '请求参数错误' })
+      throw new BadRequestException({
+        message: '请求参数错误',
+        errors: handlerRequestError(errors),
+      })
     }
     return value
   }

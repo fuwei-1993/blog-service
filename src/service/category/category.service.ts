@@ -19,7 +19,7 @@ export class CategoryService {
       name: category.name,
     })
     if (isExist) {
-      throw new BadRequestException({ description: '该分类已存在' })
+      throw new BadRequestException({ message: '该分类已存在' })
     }
     await this.categoryRepository.save(category)
   }
