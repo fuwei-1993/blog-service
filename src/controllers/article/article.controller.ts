@@ -59,7 +59,7 @@ export class ArticleController {
   }
 
   @Delete(':id')
-  @ApiOkResponse({ type: SuccessResDto })
+  @ApiOkResponse({ type: SuccessResDto, description: '删除文章' })
   async deleteById(@Param('id') id: number) {
     this.articleService.deleteArticleById(id)
   }

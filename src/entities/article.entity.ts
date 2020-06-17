@@ -19,6 +19,16 @@ export class Article {
   })
   id: number
 
+  @Column('varchar', {
+    nullable: false,
+    primary: true,
+    generated: 'uuid',
+    length: 50,
+    name: 'uuid',
+    comment: 'uuid',
+  })
+  uuid: string
+
   @Column({
     type: 'varchar',
     name: 'title',

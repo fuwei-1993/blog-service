@@ -25,10 +25,10 @@ export class ArticleService {
   }
 
   async updateArticle(id: number, article: ArticleUpdateDto) {
-    await this.articleRepository.update(id, article)
+    await this.articleRepository.update({ id }, article)
   }
 
   async deleteArticleById(id: number) {
-    await this.articleRepository.delete(id)
+    await this.articleRepository.delete({ id })
   }
 }
