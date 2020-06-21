@@ -18,11 +18,10 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
     password: string,
   ): Promise<HttpException | NUser.User> {
     const user = await this.authService.validateUser(username, password)
-    console.log(user, 'fuwei')
     if (user) {
       return user
     }
 
-    throw new UnauthorizedException({ description: '你妈喊你回去吃饭' })
+    throw new UnauthorizedException({ message: '抱歉没有你的用户消息' })
   }
 }

@@ -24,7 +24,8 @@ export class LocalAuthGuard extends AuthGuard('local') {
   handleRequest(err, user, info) {
     console.log(err, user, info)
     if (err || !user) {
-      throw err || new BadRequestException({ description: '你妈喊你回去吃饭' })
+      throw err ||
+        new BadRequestException({ description: '请输入用户名或密码' })
     }
 
     return user

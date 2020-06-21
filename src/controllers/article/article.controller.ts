@@ -18,9 +18,11 @@ import { SuccessResDto } from 'src/common/dto'
 import { ArticleService } from 'src/service/article/article.service'
 import { ArticleUpdateDto } from './dto/article-update.dto'
 import { ArticleResDto } from './dto/article-res.dto'
+import { Auth } from 'src/decorators/auth.decorator'
 
 @ApiTags('博客文章')
 @Controller('article')
+@Auth('wei')
 export class ArticleController {
   constructor(private readonly articleService: ArticleService) {}
 
