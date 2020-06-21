@@ -9,3 +9,15 @@ export const handlerRequestError = (errors: ValidationError[]) => {
     }
   })
 }
+
+export const matchRoles = <T extends string>(
+  roles: string[],
+  userRoles: T[],
+) => {
+  const userRolesMap = {} as Record<T, any>
+  userRoles.forEach(userRole => {
+    userRolesMap[userRole] = userRole
+  })
+
+  return roles.some(role => userRolesMap[role])
+}
