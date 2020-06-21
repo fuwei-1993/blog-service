@@ -22,10 +22,10 @@ import { RolesGuard } from 'src/guards/roles.guard'
     AuthService,
     LocalStrategy,
     JwtStrategy,
-    {
-      provide: APP_GUARD,
-      useClass: RolesGuard,
-    },
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: RolesGuard,
+    // },
   ],
   exports: [AuthService],
 })

@@ -18,8 +18,13 @@ export class LoginController {
   }
 
   @Get()
-  @Auth('wei')
-  find(@Req() request: Request) {
+  // @Auth('wei')
+  async find(@Req() request: Request) {
     console.log(request.user)
+  }
+
+  @Post('test')
+  async testPostUser(@User() user: NUser.User) {
+    console.log(user)
   }
 }
