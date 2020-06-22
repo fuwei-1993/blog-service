@@ -1,4 +1,4 @@
-import { IArticleInfo, ArticleStatus } from '../interface/article.interface'
+import { TArticleInfo, ArticleStatus } from '../interface/article.interface'
 import { ApiPropertyOptional, ApiProperty } from '@nestjs/swagger'
 import {
   IsEnum,
@@ -10,7 +10,7 @@ import {
 } from 'class-validator'
 import { ArticleMetaDto } from './article-meta.dto'
 
-export class ArticleCreateDto implements IArticleInfo {
+export class ArticleCreateDto implements TArticleInfo {
   @ApiProperty({ description: '文章标题' })
   @IsNotEmpty({ message: '标题不能为空' })
   @IsString()

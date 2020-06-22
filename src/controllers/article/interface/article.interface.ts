@@ -9,13 +9,15 @@ export type TArticleMeta = {
   comments: number
 }
 export interface IArticleInfo {
-  title?: string
-  keyword?: string
-  status?: ArticleStatus
-  publish?: boolean
-  meta?: TArticleMeta
-  thumb?: string
-  userId?: number
-  categoryId?: number
-  content?: string
+  title: string
+  keyword: string
+  status: ArticleStatus
+  publish: boolean
+  meta: TArticleMeta
+  thumb: string
+  userId: number
+  categoryId: number
+  content: string
 }
+
+export type TArticleInfo = Partial<IArticleInfo>

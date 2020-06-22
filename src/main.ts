@@ -20,8 +20,13 @@ async function bootstrap() {
     .setTitle('Blog Example')
     .setDescription('The blog API description')
     .setVersion('0.0.1')
-    .addTag('blog')
-    .addBearerAuth({ type: 'apiKey', in: 'header', name: 'token' })
+    .addBearerAuth({
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+      in: 'header',
+      name: 'accessToken',
+    })
     .build()
 
   const document = SwaggerModule.createDocument(app, options)

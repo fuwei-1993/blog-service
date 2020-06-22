@@ -1,8 +1,8 @@
-import { IArticleInfo, ArticleStatus } from '../interface/article.interface'
+import { TArticleInfo, ArticleStatus } from '../interface/article.interface'
 import { ApiPropertyOptional } from '@nestjs/swagger'
 import { IsBoolean, IsString, IsOptional, IsEnum } from 'class-validator'
 
-export class ArticleUpdateDto implements IArticleInfo {
+export class ArticleUpdateDto implements TArticleInfo {
   @ApiPropertyOptional()
   @IsString()
   @IsOptional()
