@@ -3,21 +3,19 @@ export enum ArticleStatus {
   DRAFT = 'draft',
 }
 
-export type TArticleMeta = {
+export interface IArticleMeta {
   views: number
   likes: number
   comments: number
 }
-export interface IArticleInfo {
+export interface IArticle {
   title: string
   keyword: string
   status: ArticleStatus
   publish: boolean
-  meta: TArticleMeta
+  meta: IArticleMeta
   thumb: string
   userId: number
   categoryId: number
   content: string
 }
-
-export type TArticleInfo = Partial<IArticleInfo>

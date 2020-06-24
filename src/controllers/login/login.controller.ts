@@ -1,5 +1,4 @@
 import { Controller, Post, UseGuards, Get, Req } from '@nestjs/common'
-import { Request } from 'express'
 import { LocalAuthGuard } from 'src/guards/local-auth.guard'
 import { AuthService } from 'src/service/auth/auth.service'
 import { Auth } from 'src/decorators/auth.decorator'
@@ -7,6 +6,7 @@ import { User } from 'src/decorators/user.decorator'
 import { ApiBody } from '@nestjs/swagger'
 import { LoginDto } from './dto/login.dto'
 import { UserService } from 'src/service/user/user.service'
+import { Request } from 'express'
 
 @Controller('login')
 export class LoginController {
@@ -28,10 +28,9 @@ export class LoginController {
 
   @Get()
   @Auth('wei')
-  async find(@Req() request) {
+  async find(@Req() request: Request) {
     console.log(request.user)
     console.log(this.userService)
-    console.log(request.session)
   }
 
   @Post('test')

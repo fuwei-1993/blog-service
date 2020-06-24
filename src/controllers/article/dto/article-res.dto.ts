@@ -1,12 +1,8 @@
-import {
-  TArticleInfo,
-  ArticleStatus,
-  TArticleMeta,
-} from '../interface/article.interface'
+import { ArticleStatus, IArticleMeta } from '../interface/article.interface'
 import { ApiPropertyOptional } from '@nestjs/swagger'
 import { Transform } from 'class-transformer'
 
-export class ArticleResDto implements TArticleInfo {
+export class ArticleResDto {
   @ApiPropertyOptional()
   title?: string
 
@@ -20,7 +16,7 @@ export class ArticleResDto implements TArticleInfo {
   publish?: boolean
 
   @ApiPropertyOptional()
-  meta?: TArticleMeta
+  meta?: IArticleMeta
 
   @ApiPropertyOptional()
   thumb?: string
