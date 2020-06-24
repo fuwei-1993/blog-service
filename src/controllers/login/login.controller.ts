@@ -6,10 +6,14 @@ import { Auth } from 'src/decorators/auth.decorator'
 import { User } from 'src/decorators/user.decorator'
 import { ApiBody } from '@nestjs/swagger'
 import { LoginDto } from './dto/login.dto'
+import { UserService } from 'src/service/user/user.service'
 
 @Controller('login')
 export class LoginController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly userService: UserService,
+  ) {}
 
   @Post()
   // @ApiForbiddenResponse({ description: 'Forbidden.' })
@@ -18,14 +22,16 @@ export class LoginController {
   })
   @UseGuards(LocalAuthGuard)
   async login(@User() user: NUser.User) {
-    const result = await this.authService.login(user)
-    return result
+    const accessToken = await this.authService.login(user)
+    return accessToken
   }
 
   @Get()
   @Auth('wei')
-  async find(@Req() request: Request) {
+  async find(@Req() request) {
     console.log(request.user)
+    console.log(this.userService)
+    console.log(request.session)
   }
 
   @Post('test')

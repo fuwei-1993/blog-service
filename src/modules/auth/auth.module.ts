@@ -14,7 +14,7 @@ import { RolesGuard } from 'src/guards/roles.guard'
     JwtModule.register({
       secret: jwtConstants.secret,
       signOptions: {
-        expiresIn: '360s',
+        expiresIn: '960s',
       },
     }),
   ],

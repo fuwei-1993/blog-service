@@ -7,7 +7,7 @@ export class UserService {
       username: 'test',
       password: 'test',
       userId: '234',
-      rules: ['wei'],
+      roles: ['wei', 'baba'],
     },
   ]
   async findOne(username: string): Promise<NUser.User | null> {

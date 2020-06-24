@@ -3,6 +3,6 @@ declare namespace NUser {
     username: string
     password: string
     userId: string
-    rules: string[]
+    roles: string[]
   }
 }

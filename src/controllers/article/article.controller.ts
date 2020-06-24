@@ -22,7 +22,7 @@ import { Auth } from 'src/decorators/auth.decorator'
 
 @ApiTags('博客文章')
 @Controller('article')
-@Auth('wei')
+// @Auth('wei')
 export class ArticleController {
   constructor(private readonly articleService: ArticleService) {}
 
