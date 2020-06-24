@@ -1,8 +1,8 @@
-import { ICategory, CategorySort } from '../interface/category.interface'
+import { TCategoryInfo, CategorySort } from '../interface/category.interface'
 import { ApiPropertyOptional } from '@nestjs/swagger'
 import { Transform } from 'class-transformer'
 
-export class CategoryResDto implements ICategory {
+export class CategoryResDto implements TCategoryInfo {
   @ApiPropertyOptional()
   name: string
 

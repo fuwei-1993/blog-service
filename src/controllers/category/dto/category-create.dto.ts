@@ -1,14 +1,8 @@
-import { ICategory, CategorySort } from '../interface/category.interface'
+import { CategorySort } from '../interface/category.interface'
 import { ApiProperty } from '@nestjs/swagger'
-import {
-  // IsNumber,
-  IsNotEmpty,
-  IsString,
-  IsEnum,
-  // IsOptional,
-} from 'class-validator'
+import { IsNotEmpty, IsString, IsEnum } from 'class-validator'
 
-export class CategoryCreateDto implements ICategory {
+export class CategoryCreateDto {
   @ApiProperty({ required: true, description: '文章分类名称' })
   @IsString({ message: '必须为字符串' })
   @IsNotEmpty({ message: '不能为空' })
