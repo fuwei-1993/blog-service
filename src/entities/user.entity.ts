@@ -75,6 +75,8 @@ export class User {
   )
   categories: Category[]
 
+  roles: string[]
+
   @CreateDateColumn({
     type: 'timestamp',
     name: 'created_at',

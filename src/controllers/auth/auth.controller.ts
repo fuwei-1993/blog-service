@@ -3,13 +3,14 @@ import { LocalAuthGuard } from 'src/guards/local-auth.guard'
 import { AuthService } from 'src/service/auth/auth.service'
 import { Auth } from 'src/decorators/auth.decorator'
 import { User } from 'src/decorators/user.decorator'
-import { ApiBody } from '@nestjs/swagger'
+import { ApiBody, ApiTags } from '@nestjs/swagger'
 import { LoginDto } from './dto/login.dto'
 import { UserService } from 'src/service/user/user.service'
 import { Request } from 'express'
 
+@ApiTags('权限')
 @Controller('login')
-export class LoginController {
+export class AuthController {
   constructor(
     private readonly authService: AuthService,
     private readonly userService: UserService,
@@ -21,7 +22,7 @@ export class LoginController {
     type: LoginDto,
   })
   @UseGuards(LocalAuthGuard)
-  async login(@User() user: NUser.User) {
+  async login(@User() user: LoginDto) {
     const accessToken = await this.authService.login(user)
     return accessToken
   }

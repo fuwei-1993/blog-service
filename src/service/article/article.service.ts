@@ -20,8 +20,8 @@ export class ArticleService {
   }
 
   async createArticle(article: ArticleCreateDto) {
-    const result = this.articleRepository.create(article)
-    await this.articleRepository.save(result)
+    const articleEntity = this.articleRepository.create(article)
+    await this.articleRepository.save(articleEntity)
   }
 
   async updateArticle(id: number, article: ArticleUpdateDto) {

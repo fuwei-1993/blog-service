@@ -11,5 +11,3 @@ export interface ICategoryInfo {
   createdAt: Date
   updatedAt: Date
 }
-
-export type TCategoryInfo = Partial<ICategoryInfo>

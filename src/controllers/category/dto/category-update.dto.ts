@@ -1,8 +1,8 @@
-import { TCategoryInfo, CategorySort } from '../interface/category.interface'
+import { CategorySort } from '../interface/category.interface'
 import { IsString, IsEnum, IsOptional } from 'class-validator'
 import { ApiPropertyOptional } from '@nestjs/swagger'
 
-export class CategoryUpdateDto implements TCategoryInfo {
+export class CategoryUpdateDto {
   @ApiPropertyOptional()
   @IsString()
   @IsOptional()

@@ -30,8 +30,8 @@ export class ArticleController {
     type: [ArticleResDto],
     description: '查询所有文章',
   })
-  findArticles(): Promise<ArticleResDto[]> {
-    return this.articleService.findArticles()
+  async findArticles(): Promise<ArticleResDto[]> {
+    return await this.articleService.findArticles()
   }
 
   @Post('create')
@@ -62,6 +62,6 @@ export class ArticleController {
   @Delete(':id')
   @ApiOkResponse({ type: SuccessResDto, description: '删除文章' })
   async deleteById(@Param('id') id: number) {
-    this.articleService.deleteArticleById(id)
+    await this.articleService.deleteArticleById(id)
   }
 }

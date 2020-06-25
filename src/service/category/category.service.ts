@@ -21,7 +21,8 @@ export class CategoryService {
     if (isExist) {
       throw new BadRequestException({ message: '该分类已存在' })
     }
-    await this.categoryRepository.save(category)
+    const categoryEntity = this.categoryRepository.create(category)
+    await this.categoryRepository.save(categoryEntity)
   }
 
   async findCategories(): Promise<CategoryResDto[] | null> {
