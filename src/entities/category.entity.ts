@@ -25,7 +25,6 @@ export class Category {
     name: 'name',
     length: 50,
     comment: '分类名称',
-    unique: true,
   })
   name: string
 

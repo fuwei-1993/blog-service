@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common'
 import {
   ApiTags,
@@ -18,6 +19,8 @@ import { CategoryService } from 'src/service/category/category.service'
 import { CategoryResDto } from './dto/category-res.dto'
 import { SuccessResDto } from 'src/common/dto'
 import { CategoryUpdateDto } from './dto/category-update.dto'
+import { User } from 'src/decorators/user.decorator'
+import { Jwt } from 'src/decorators/jwt.decorator'
 
 @ApiTags('博客文章分类')
 @Controller('category')
@@ -33,8 +36,12 @@ export class CategoryController {
     type: CategoryCreateDto,
     description: '创建文章分类参数',
   })
-  async createCategory(@Body() category: CategoryCreateDto) {
-    await this.categoryService.createCategory(category)
+  @Jwt()
+  async createCategory(
+    @User('userId') userId: string,
+    @Body() category: CategoryCreateDto,
+  ) {
+    await this.categoryService.createCategory(category, userId)
   }
 
   @Get('find')

@@ -12,10 +12,13 @@ import { UserResDto } from './dto/user-res.dto'
 import { UserCreateDto } from './dto/user-create.dto'
 import { SuccessResDto } from 'src/common/dto'
 import { UserUpdateDto } from './dto/user-update.dto'
+import { UserService } from 'src/service/user/user.service'
 
 @ApiTags('用户信息')
 @Controller('user')
 export class UserController {
+  constructor(private readonly userService: UserService) {}
+
   @Post('create')
   @ApiBody({
     type: UserCreateDto,
@@ -24,8 +27,8 @@ export class UserController {
   @ApiOkResponse({
     type: SuccessResDto,
   })
-  create(@Body() user: UserCreateDto) {
-    return user
+  async create(@Body() user: UserCreateDto) {
+    await this.userService.create(user)
   }
 
   @Get('find')
@@ -33,14 +36,18 @@ export class UserController {
     type: [UserResDto],
     description: '所有用户信息',
   })
-  find() {}
+  async find(): Promise<UserResDto[]> {
+    return await this.userService.findAll()
+  }
 
   @Get('find/:id')
   @ApiOkResponse({
     type: UserResDto,
     description: '用户信息',
   })
-  findOneById(@Param('id') id: string) {}
+  async findOneById(@Param('id') id: string): Promise<UserResDto> {
+    return await this.userService.findOneById(id)
+  }
 
   @Patch(':id')
   @ApiOkResponse({
@@ -50,11 +57,15 @@ export class UserController {
     type: UserUpdateDto,
     description: '更新用户',
   })
-  update(@Param('id') id: string) {}
+  async update(@Param('id') id: string, @Body() user: UserUpdateDto) {
+    await this.userService.update(id, user)
+  }
 
   @Delete(':id')
   @ApiOkResponse({
     type: SuccessResDto,
   })
-  delete(@Param('id') id: string) {}
+  async delete(@Param('id') id: string) {
+    await this.userService.deleteOneById(id)
+  }
 }

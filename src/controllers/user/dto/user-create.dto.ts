@@ -2,9 +2,9 @@ import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger'
 import {
   IsString,
   IsNotEmpty,
-  IsPhoneNumber,
   IsEmail,
   IsOptional,
+  IsMobilePhone,
 } from 'class-validator'
 
 export class UserCreateDto {
@@ -26,8 +26,8 @@ export class UserCreateDto {
     description: '用户手机',
   })
   @IsString()
-  @IsPhoneNumber('CH')
-  // @IsOptional()
+  @IsMobilePhone('zh-CN')
+  @IsOptional()
   readonly mobile?: string
 
   @ApiPropertyOptional({

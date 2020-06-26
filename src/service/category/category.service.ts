@@ -1,5 +1,5 @@
 import { Injectable, BadRequestException } from '@nestjs/common'
-import { Repository } from 'typeorm'
+import { Repository, createQueryBuilder } from 'typeorm'
 import { Category } from 'src/entities/category.entity'
 import { CategoryCreateDto } from 'src/controllers/category/dto/category-create.dto'
 import { InjectRepository } from '@nestjs/typeorm'
@@ -14,14 +14,28 @@ export class CategoryService {
     private readonly categoryRepository: Repository<Category>,
   ) {}
 
-  async createCategory(category: CategoryCreateDto) {
-    const isExist = await this.categoryRepository.findOne({
-      name: category.name,
-    })
+  async createCategory(category: CategoryCreateDto, userId: string) {
+    const isExist = await createQueryBuilder('category')
+      .where('category.userUuid = :userId', {
+        userId,
+      })
+      .andWhere('category.name = :name ', {
+        name: category.name,
+      })
+      .getOne()
+
     if (isExist) {
       throw new BadRequestException({ message: '该分类已存在' })
     }
-    const categoryEntity = this.categoryRepository.create(category)
+
+    const user = await createQueryBuilder('user')
+      .where('user.uuid = :userUuid', { userUuid: userId })
+      .getOne()
+
+    const categoryEntity = this.categoryRepository.create({
+      ...category,
+      user,
+    })
     await this.categoryRepository.save(categoryEntity)
   }
 
