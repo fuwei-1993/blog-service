@@ -18,6 +18,8 @@ import { SuccessResDto } from 'src/common/dto'
 import { ArticleService } from 'src/service/article/article.service'
 import { ArticleUpdateDto } from './dto/article-update.dto'
 import { ArticleResDto } from './dto/article-res.dto'
+import { User } from 'src/decorators/user.decorator'
+import { Jwt } from 'src/decorators/jwt.decorator'
 
 @ApiTags('博客文章')
 @Controller('article')
@@ -43,8 +45,12 @@ export class ArticleController {
     type: ArticleCreateDto,
     description: '创建文章',
   })
-  async create(@Body() article: ArticleCreateDto) {
-    await this.articleService.createArticle(article)
+  @Jwt()
+  async create(
+    @Body() article: ArticleCreateDto,
+    @User('userId') userId: string,
+  ) {
+    await this.articleService.createArticle(article, userId)
   }
 
   @Patch(':id')

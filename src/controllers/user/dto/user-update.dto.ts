@@ -3,4 +3,5 @@ export class UserUpdateDto {
   readonly password?: string
   readonly mobile?: string
   readonly email?: string
+  readonly
 }

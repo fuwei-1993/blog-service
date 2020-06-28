@@ -11,6 +11,11 @@ import {
 import { ArticleMetaDto } from './article-meta.dto'
 
 export class ArticleCreateDto {
+  @ApiProperty({ description: '分类id' })
+  @IsNotEmpty({ message: '分类不能为空' })
+  @IsString()
+  categoryId: string
+
   @ApiProperty({ description: '文章标题' })
   @IsNotEmpty({ message: '标题不能为空' })
   @IsString()

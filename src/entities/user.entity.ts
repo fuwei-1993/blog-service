@@ -66,12 +66,18 @@ export class User {
   @OneToMany(
     () => Article,
     article => article.user,
+    {
+      lazy: true,
+    },
   )
   articles: Article[]
 
   @OneToMany(
     () => Category,
     category => category.user,
+    {
+      lazy: true,
+    },
   )
   categories: Category[]
 

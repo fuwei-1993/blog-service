@@ -6,6 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm'
 import { plainToClass } from 'class-transformer'
 import { CategoryResDto } from 'src/controllers/category/dto/category-res.dto'
 import { CategoryUpdateDto } from 'src/controllers/category/dto/category-update.dto'
+import { User } from 'src/entities/user.entity'
 
 @Injectable()
 export class CategoryService {
@@ -15,7 +16,9 @@ export class CategoryService {
   ) {}
 
   async createCategory(category: CategoryCreateDto, userId: string) {
-    const isExist = await createQueryBuilder('category')
+    const isExist: Category | undefined = await createQueryBuilder<Category>(
+      'category',
+    )
       .where('category.userUuid = :userId', {
         userId,
       })
@@ -28,7 +31,7 @@ export class CategoryService {
       throw new BadRequestException({ message: '该分类已存在' })
     }
 
-    const user = await createQueryBuilder('user')
+    const user = await createQueryBuilder<User>('user')
       .where('user.uuid = :userUuid', { userUuid: userId })
       .getOne()
 
