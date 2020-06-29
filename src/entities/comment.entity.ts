@@ -7,7 +7,6 @@ import {
   ManyToOne,
 } from 'typeorm'
 import { Article } from './article.entity'
-import { Transform } from 'class-transformer'
 import { User } from './user.entity'
 
 @Entity('comment')

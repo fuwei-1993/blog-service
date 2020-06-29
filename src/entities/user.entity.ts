@@ -8,7 +8,6 @@ import {
 } from 'typeorm'
 import { Article } from './article.entity'
 import { Category } from './category.entity'
-import { Transform } from 'class-transformer'
 import { Comment } from './comment.entity'
 
 @Entity('user')
