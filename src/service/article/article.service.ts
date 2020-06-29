@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, BadRequestException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { Article } from 'src/entities/article.entity'
 import { ArticleCreateDto } from 'src/controllers/article/dto/article-create.dto'
@@ -35,6 +35,10 @@ export class ArticleService {
         categoryId,
       })
       .getOne()
+
+    if (!user || !category) {
+      throw new BadRequestException({ message: '文章创建失败' })
+    }
 
     const articleEntity = this.articleRepository.create({
       ...article,

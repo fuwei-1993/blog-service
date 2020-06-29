@@ -5,11 +5,13 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
   CreateDateColumn,
+  OneToMany,
 } from 'typeorm'
 import { User } from './user.entity'
 import { Category } from './category.entity'
 import { ArticleStatus } from 'src/controllers/article/interface/article.interface'
-
+import { Transform } from 'class-transformer'
+import { Comment } from './comment.entity'
 @Entity('article')
 export class Article {
   @PrimaryGeneratedColumn({
@@ -91,6 +93,12 @@ export class Article {
   )
   category: Category
 
+  @OneToMany(
+    () => Comment,
+    comment => comment.article,
+  )
+  comments: Comment[]
+
   @Column({
     type: 'varchar',
     comment: '文章内容',
@@ -103,6 +111,7 @@ export class Article {
     name: 'created_at',
     comment: '创建时间',
   })
+  @Transform(date => +new Date(date))
   createdAt: Date
 
   @UpdateDateColumn({
@@ -110,5 +119,6 @@ export class Article {
     name: 'updated_at',
     comment: '最后更新时间',
   })
+  @Transform(date => +new Date(date))
   updatedAt: Date
 }

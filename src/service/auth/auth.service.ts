@@ -1,8 +1,7 @@
-import { Injectable, OnModuleInit } from '@nestjs/common'
+import { Injectable } from '@nestjs/common'
 import { UserService } from '../user/user.service'
 import { JwtService } from '@nestjs/jwt'
 import { IUser } from 'src/controllers/user/interface/user.interface'
-import { ModuleRef } from '@nestjs/core'
 
 @Injectable()
 export class AuthService {

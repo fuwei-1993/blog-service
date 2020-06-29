@@ -17,25 +17,11 @@ export class AuthController {
   ) {}
 
   @Post()
-  // @ApiForbiddenResponse({ description: 'Forbidden.' })
   @ApiBody({
     type: LoginDto,
   })
   @UseGuards(LocalAuthGuard)
   async login(@User() user: LoginDto) {
-    const accessToken = await this.authService.login(user)
-    return accessToken
-  }
-
-  @Get()
-  @Auth('wei')
-  async find(@Req() request: Request) {
-    console.log(request.user)
-    console.log(this.userService)
-  }
-
-  @Post('test')
-  async testPostUser(@User() user: NUser.User) {
-    console.log(user)
+    return await this.authService.login(user)
   }
 }

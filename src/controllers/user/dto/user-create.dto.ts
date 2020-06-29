@@ -5,6 +5,7 @@ import {
   IsEmail,
   IsOptional,
   IsMobilePhone,
+  IsNumberString,
 } from 'class-validator'
 
 export class UserCreateDto {
@@ -25,7 +26,7 @@ export class UserCreateDto {
   @ApiPropertyOptional({
     description: '用户手机',
   })
-  @IsString()
+  @IsNumberString()
   @IsMobilePhone('zh-CN')
   @IsOptional()
   readonly mobile?: string

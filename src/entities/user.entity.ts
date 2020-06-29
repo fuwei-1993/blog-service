@@ -8,6 +8,7 @@ import {
 } from 'typeorm'
 import { Article } from './article.entity'
 import { Category } from './category.entity'
+import { Transform } from 'class-transformer'
 
 @Entity('user')
 export class User {
@@ -75,9 +76,6 @@ export class User {
   @OneToMany(
     () => Category,
     category => category.user,
-    {
-      lazy: true,
-    },
   )
   categories: Category[]
 
@@ -88,6 +86,7 @@ export class User {
     name: 'created_at',
     comment: '创建时间',
   })
+  @Transform(date => +new Date(date))
   createdAt: Date
 
   @UpdateDateColumn({
@@ -95,5 +94,6 @@ export class User {
     name: 'updated_at',
     comment: '最后更新时间',
   })
+  @Transform(date => +new Date(date))
   updatedAt: Date
 }

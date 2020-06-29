@@ -45,7 +45,7 @@ export class UserController {
     type: UserResDto,
     description: '用户信息',
   })
-  async findOneById(@Param('id') id: string): Promise<UserResDto> {
+  async findOneById(@Param('id') id: number): Promise<UserResDto> {
     return await this.userService.findOneById(id)
   }
 

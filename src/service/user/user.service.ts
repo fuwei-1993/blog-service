@@ -1,6 +1,6 @@
 import { Injectable, BadRequestException } from '@nestjs/common'
 import { User } from 'src/entities/user.entity'
-import { Repository } from 'typeorm'
+import { Repository, createQueryBuilder } from 'typeorm'
 import { UserResDto } from 'src/controllers/user/dto/user-res.dto'
 import { UserCreateDto } from 'src/controllers/user/dto/user-create.dto'
 import { InjectRepository } from '@nestjs/typeorm'
@@ -31,8 +31,15 @@ export class UserService {
     return await this.userRepository.find()
   }
 
-  async findOneById(id: string): Promise<UserResDto> {
-    return await this.userRepository.findOne(id)
+  async findOneById(id: number): Promise<UserResDto> {
+    // const user = await this.userRepository.findOne({ id })
+    // user.categories = await user.categories
+    const user = await this.userRepository
+      .createQueryBuilder('user')
+      .leftJoinAndSelect('user.categories', 'category')
+      .where('user.id = :id', { id })
+      .getOne()
+    return user
   }
 
   async update(id: string, user: UserUpdateDto) {

@@ -10,6 +10,7 @@ import {
 import { User } from './user.entity'
 import { Article } from './article.entity'
 import { CategorySort } from 'src/controllers/category/interface/category.interface'
+import { Transform } from 'class-transformer'
 
 @Entity('category')
 export class Category {
@@ -59,6 +60,7 @@ export class Category {
     name: 'created_at',
     comment: '创建时间',
   })
+  @Transform(date => +new Date(date))
   createdAt: Date
 
   @UpdateDateColumn({
@@ -66,5 +68,6 @@ export class Category {
     name: 'updated_at',
     comment: '最后更新时间',
   })
+  @Transform(date => +new Date(date))
   updatedAt: Date
 }
