@@ -1,10 +1,11 @@
 import { Injectable, BadRequestException } from '@nestjs/common'
 import { User } from 'src/entities/user.entity'
-import { Repository, createQueryBuilder } from 'typeorm'
+import { Repository } from 'typeorm'
 import { UserResDto } from 'src/controllers/user/dto/user-res.dto'
 import { UserCreateDto } from 'src/controllers/user/dto/user-create.dto'
 import { InjectRepository } from '@nestjs/typeorm'
 import { UserUpdateDto } from 'src/controllers/user/dto/user-update.dto'
+import { plainToClass } from 'class-transformer'
 
 @Injectable()
 export class UserService {
@@ -28,7 +29,8 @@ export class UserService {
   }
 
   async findAll(): Promise<UserResDto[]> {
-    return await this.userRepository.find()
+    const users = await this.userRepository.find()
+    return users.map(user => plainToClass(UserResDto, user))
   }
 
   async findOneById(id: string): Promise<UserResDto> {
