@@ -31,22 +31,22 @@ export class UserService {
     return await this.userRepository.find()
   }
 
-  async findOneById(id: number): Promise<UserResDto> {
+  async findOneById(id: string): Promise<UserResDto> {
     // const user = await this.userRepository.findOne({ id })
     // user.categories = await user.categories
     const user = await this.userRepository
       .createQueryBuilder('user')
       .leftJoinAndSelect('user.categories', 'category')
-      .where('user.id = :id', { id })
+      .where('user.uuid = :id', { id })
       .getOne()
     return user
   }
 
   async update(id: string, user: UserUpdateDto) {
-    await this.userRepository.update(id, user)
+    await this.userRepository.update({ uuid: id }, user)
   }
 
   async deleteOneById(id: string) {
-    await this.userRepository.delete(id)
+    await this.userRepository.delete({ uuid: id })
   }
 }

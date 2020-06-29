@@ -61,13 +61,13 @@ export class ArticleController {
   @ApiOkResponse({
     type: SuccessResDto,
   })
-  async update(@Param('id') id: number, @Body() article: ArticleUpdateDto) {
+  async update(@Param('id') id: string, @Body() article: ArticleUpdateDto) {
     await this.articleService.updateArticle(id, article)
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: SuccessResDto, description: '删除文章' })
-  async deleteById(@Param('id') id: number) {
+  async deleteById(@Param('id') id: string) {
     await this.articleService.deleteArticleById(id)
   }
 }

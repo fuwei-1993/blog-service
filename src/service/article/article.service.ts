@@ -48,11 +48,11 @@ export class ArticleService {
     await this.articleRepository.save(articleEntity)
   }
 
-  async updateArticle(id: number, article: ArticleUpdateDto) {
-    await this.articleRepository.update({ id }, article)
+  async updateArticle(id: string, article: ArticleUpdateDto) {
+    await this.articleRepository.update({ uuid: id }, article)
   }
 
-  async deleteArticleById(id: number) {
-    await this.articleRepository.delete({ id })
+  async deleteArticleById(id: string) {
+    await this.articleRepository.delete({ uuid: id })
   }
 }
