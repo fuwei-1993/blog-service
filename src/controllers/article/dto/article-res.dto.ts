@@ -1,32 +1,37 @@
-import { ArticleStatus, IArticleMeta } from '../interface/article.interface'
+import {
+  ArticleStatus,
+  IArticleMeta,
+  IArticle,
+} from '../interface/article.interface'
 import { ApiPropertyOptional } from '@nestjs/swagger'
-import { Transform } from 'class-transformer'
+import { Transform, Exclude, Expose } from 'class-transformer'
 
-export class ArticleResDto {
+export class ArticleResDto implements IArticle {
   @ApiPropertyOptional()
-  title?: string
+  title: string
 
-  @ApiPropertyOptional()
-  keyword?: string
+  @Exclude()
+  id: number
 
-  @ApiPropertyOptional()
-  status?: ArticleStatus
-
-  @ApiPropertyOptional()
-  publish?: boolean
+  @Expose({ name: 'id' })
+  uuid: string
 
   @ApiPropertyOptional()
-  meta?: IArticleMeta
+  keyword: string
 
   @ApiPropertyOptional()
-  thumb?: string
+  status: ArticleStatus
 
   @ApiPropertyOptional()
-  userId?: number
+  publish: boolean
 
   @ApiPropertyOptional()
-  categoryId?: number
+  meta: IArticleMeta
 
+  @ApiPropertyOptional()
+  thumb: string
+
+  content: string
   @ApiPropertyOptional()
   @Transform((date: string | number | Date) => +new Date(date))
   createdAt: Date

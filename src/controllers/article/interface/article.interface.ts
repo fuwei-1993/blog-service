@@ -15,7 +15,5 @@ export interface IArticle {
   publish: boolean
   meta: IArticleMeta
   thumb: string
-  userId: number
-  categoryId: number
   content: string
 }

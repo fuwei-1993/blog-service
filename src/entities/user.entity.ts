@@ -9,6 +9,7 @@ import {
 import { Article } from './article.entity'
 import { Category } from './category.entity'
 import { Transform } from 'class-transformer'
+import { Comment } from './comment.entity'
 
 @Entity('user')
 export class User {
@@ -46,6 +47,7 @@ export class User {
     nullable: false,
   })
   password: string
+
   @Column({
     type: 'varchar',
     nullable: true,
@@ -81,12 +83,17 @@ export class User {
 
   roles: string[]
 
+  @OneToMany(
+    () => Comment,
+    comment => comment.user,
+  )
+  comments: Comment[]
+
   @CreateDateColumn({
     type: 'timestamp',
     name: 'created_at',
     comment: '创建时间',
   })
-  @Transform(date => +new Date(date))
   createdAt: Date
 
   @UpdateDateColumn({
@@ -94,6 +101,5 @@ export class User {
     name: 'updated_at',
     comment: '最后更新时间',
   })
-  @Transform(date => +new Date(date))
   updatedAt: Date
 }

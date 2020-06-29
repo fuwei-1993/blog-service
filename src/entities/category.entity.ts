@@ -22,6 +22,15 @@ export class Category {
   id: number
 
   @Column({
+    type: 'uuid',
+    generated: 'uuid',
+    comment: 'uuid',
+    nullable: false,
+    primary: true,
+  })
+  uuid: string
+
+  @Column({
     type: 'varchar',
     name: 'name',
     length: 50,

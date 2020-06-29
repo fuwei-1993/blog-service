@@ -3,11 +3,10 @@ export enum CategorySort {
   ASC = 'ASC',
 }
 
-export interface ICategoryInfo {
+export interface ICategory {
   name: string
   description: string
   sort: CategorySort
-  userId: number
   createdAt: Date
   updatedAt: Date
 }

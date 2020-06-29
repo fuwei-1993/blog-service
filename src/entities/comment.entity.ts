@@ -6,9 +6,9 @@ import {
   CreateDateColumn,
   ManyToOne,
 } from 'typeorm'
-
 import { Article } from './article.entity'
 import { Transform } from 'class-transformer'
+import { User } from './user.entity'
 
 @Entity('comment')
 export class Comment {
@@ -32,12 +32,17 @@ export class Comment {
   )
   article: Article
 
+  @ManyToOne(
+    () => User,
+    user => user.comments,
+  )
+  user: User
+
   @CreateDateColumn({
     type: 'timestamp',
     name: 'created_at',
     comment: '创建时间',
   })
-  @Transform(date => +new Date(date))
   createdAt: Date
 
   @UpdateDateColumn({
@@ -45,6 +50,5 @@ export class Comment {
     name: 'updated_at',
     comment: '更新时间',
   })
-  @Transform(date => +new Date(date))
   updatedAt: Date
 }

@@ -4,9 +4,16 @@ import { AuthController } from 'src/controllers/auth/auth.controller'
 import { CategoryModule } from '../category/category.module'
 import { ArticleModule } from '../article/article.module'
 import { UserModule } from '../user/user.module'
+import { CommentModule } from '../comment/comment.module'
 
 @Module({
-  imports: [UserModule, AuthModule, CategoryModule, ArticleModule],
+  imports: [
+    UserModule,
+    AuthModule,
+    CategoryModule,
+    ArticleModule,
+    CommentModule,
+  ],
   controllers: [AuthController],
 })
 export class AdminModule {}
