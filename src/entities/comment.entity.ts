@@ -19,6 +19,17 @@ export class Comment {
   id: number
 
   @Column({
+    nullable: false,
+    primary: true,
+    generated: 'uuid',
+    length: 50,
+    type: 'uuid',
+    comment: 'uuid',
+    name: 'uuid',
+  })
+  uuid: string
+
+  @Column({
     type: 'varchar',
     name: 'description',
     comment: '评论内容',

@@ -9,6 +9,8 @@ export interface IArticleMeta {
   comments: number
 }
 export interface IArticle {
+  id: number
+  uuid: string
   title: string
   keyword: string
   status: ArticleStatus

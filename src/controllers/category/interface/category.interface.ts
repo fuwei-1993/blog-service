@@ -4,6 +4,8 @@ export enum CategorySort {
 }
 
 export interface ICategory {
+  id: number
+  uuid: string
   name: string
   description: string
   sort: CategorySort
