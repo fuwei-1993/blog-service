@@ -13,17 +13,17 @@ import { ArticleMetaDto } from './article-meta.dto'
 export class ArticleCreateDto {
   @ApiProperty({ description: '分类id' })
   @IsNotEmpty({ message: '分类不能为空' })
-  @IsString()
+  @IsString({ message: '必须为字符串' })
   categoryId: string
 
   @ApiProperty({ description: '文章标题' })
   @IsNotEmpty({ message: '标题不能为空' })
-  @IsString()
+  @IsString({ message: '必须为字符串' })
   title: string
 
   @ApiProperty({ description: '文章关键字' }) //必选
   @IsNotEmpty({ message: '标题不能为空' })
-  @IsString()
+  @IsString({ message: '必须为字符串' })
   keyword: string
 
   @ApiPropertyOptional({
@@ -58,7 +58,7 @@ export class ArticleCreateDto {
   @ApiProperty({
     description: '文章内容',
   })
-  @IsString()
-  @IsNotEmpty()
+  @IsString({ message: '必须为字符串' })
+  @IsNotEmpty({ message: '不能为空' })
   content: string
 }

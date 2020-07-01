@@ -4,12 +4,12 @@ import { ApiPropertyOptional } from '@nestjs/swagger'
 
 export class CategoryUpdateDto {
   @ApiPropertyOptional()
-  @IsString()
+  @IsString({ message: '必须为字符串' })
   @IsOptional()
   name?: string
 
   @ApiPropertyOptional()
-  @IsString()
+  @IsString({ message: '必须为字符串' })
   @IsOptional()
   description?: string
 

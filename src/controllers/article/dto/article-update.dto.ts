@@ -4,12 +4,12 @@ import { IsBoolean, IsString, IsOptional, IsEnum } from 'class-validator'
 
 export class ArticleUpdateDto {
   @ApiPropertyOptional()
-  @IsString()
+  @IsString({ message: '必须为字符串' })
   @IsOptional()
   title?: string
 
   @ApiPropertyOptional()
-  @IsString()
+  @IsString({ message: '必须为字符串' })
   @IsOptional()
   keyword?: string
 
@@ -26,7 +26,7 @@ export class ArticleUpdateDto {
   publish?: boolean
 
   @ApiPropertyOptional()
-  @IsString()
+  @IsString({ message: '必须为字符串' })
   @IsOptional()
   content?: string
 }

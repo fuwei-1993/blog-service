@@ -12,15 +12,15 @@ export class UserCreateDto {
   @ApiProperty({
     description: '用户账号',
   })
-  @IsString()
-  @IsNotEmpty()
+  @IsString({ message: '必须为字符串' })
+  @IsNotEmpty({ message: '不能为空' })
   readonly username: string
 
   @ApiProperty({
     description: '用户密码',
   })
-  @IsString()
-  @IsNotEmpty()
+  @IsString({ message: '必须为字符串' })
+  @IsNotEmpty({ message: '不能为空' })
   readonly password: string
 
   @ApiPropertyOptional({
@@ -34,7 +34,7 @@ export class UserCreateDto {
   @ApiPropertyOptional({
     description: '用户邮箱',
   })
-  @IsString()
+  @IsString({ message: '必须为字符串' })
   @IsEmail()
   @IsOptional()
   readonly email?: string

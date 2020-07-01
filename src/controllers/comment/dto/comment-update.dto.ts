@@ -5,6 +5,6 @@ export class CommentUpdateDto {
   @ApiProperty({
     description: '评论内容',
   })
-  @IsString()
+  @IsString({ message: '必须为字符串' })
   content: string
 }

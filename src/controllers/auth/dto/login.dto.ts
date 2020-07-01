@@ -5,14 +5,14 @@ export class LoginDto {
   @ApiProperty({
     description: '用户名',
   })
-  @IsNotEmpty()
-  @IsString()
+  @IsNotEmpty({ message: '不能为空' })
+  @IsString({ message: '必须为字符串' })
   username: string
 
   @ApiProperty({
     description: '密码',
   })
-  @IsNotEmpty()
-  @IsString()
+  @IsNotEmpty({ message: '不能为空' })
+  @IsString({ message: '必须为字符串' })
   password: string
 }
