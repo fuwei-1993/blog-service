@@ -34,7 +34,7 @@ export class UserService {
   }
 
   async findOneById(id: string): Promise<UserResDto> {
-    // const user = await this.userRepository.findOne({ id })
+    // const user = await this.userRepository.findOne({ uuid: id })
     // user.categories = await user.categories
     const user = await this.userRepository
       .createQueryBuilder('user')
