@@ -20,10 +20,11 @@ import { ArticleUpdateDto } from './dto/article-update.dto'
 import { ArticleResDto } from './dto/article-res.dto'
 import { User } from 'src/decorators/user.decorator'
 import { Jwt } from 'src/decorators/jwt.decorator'
+import { AuthSwagger } from 'src/decorators/auth.decorator'
 
 @ApiTags('博客文章')
 @Controller('article')
-// @Auth('wei')
+@AuthSwagger()
 export class ArticleController {
   constructor(private readonly articleService: ArticleService) {}
 

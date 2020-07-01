@@ -20,9 +20,11 @@ import { SuccessResDto } from 'src/common/dto'
 import { CategoryUpdateDto } from './dto/category-update.dto'
 import { User } from 'src/decorators/user.decorator'
 import { Jwt } from 'src/decorators/jwt.decorator'
+import { AuthSwagger } from 'src/decorators/auth.decorator'
 
 @ApiTags('博客文章分类')
 @Controller('category')
+@AuthSwagger()
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
