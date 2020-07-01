@@ -5,6 +5,8 @@ import { CategoryModule } from '../category/category.module'
 import { ArticleModule } from '../article/article.module'
 import { UserModule } from '../user/user.module'
 import { CommentModule } from '../comment/comment.module'
+import { APP_GUARD } from '@nestjs/core'
+import { JwtAuthGuard } from 'src/guards/jwt-auth.guard'
 
 @Module({
   imports: [
@@ -13,6 +15,12 @@ import { CommentModule } from '../comment/comment.module'
     CategoryModule,
     ArticleModule,
     CommentModule,
+  ],
+  providers: [
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
   ],
   controllers: [AuthController],
 })

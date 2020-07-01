@@ -5,6 +5,7 @@ import { User } from 'src/decorators/user.decorator'
 import { ApiBody, ApiTags } from '@nestjs/swagger'
 import { LoginDto } from './dto/login.dto'
 import { UserService } from 'src/service/user/user.service'
+import { JwtPass } from 'src/decorators/jwt-pass.decorator'
 
 @ApiTags('权限')
 @Controller('login')
@@ -18,6 +19,7 @@ export class AuthController {
   @ApiBody({
     type: LoginDto,
   })
+  @JwtPass()
   @UseGuards(LocalAuthGuard)
   async login(@User() user: LoginDto) {
     return await this.authService.login(user)

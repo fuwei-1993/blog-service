@@ -23,6 +23,6 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
       return user
     }
 
-    throw new UnauthorizedException({ message: '抱歉没有你的用户消息' })
+    throw new UnauthorizedException({ message: '用户名或者密码错误' })
   }
 }

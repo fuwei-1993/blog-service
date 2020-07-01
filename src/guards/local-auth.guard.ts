@@ -11,7 +11,7 @@ export class LocalAuthGuard extends AuthGuard('local') {
     const request = context.switchToHttp().getRequest()
     const { body } = request
     // 注意 使用手动白名单 会绕过策略校验
-    if (body.name === 'fuwei') {
+    if (body.username === 'fuwei1') {
       request.user = {
         username: 'fuwei',
         password: 'test',

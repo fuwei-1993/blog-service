@@ -5,4 +5,5 @@ export const NODE_ENV = {
 
 export const jwtConstants = {
   secret: 'secretKey',
+  jwtPass: 'jwtPass',
 }
