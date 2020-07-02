@@ -1,6 +1,6 @@
-import { authRelationTransform } from '..'
+import { rolesRelationTransform } from '..'
 
-describe('authRelationTransform', () => {
+describe('rolesRelationTransform', () => {
   const adminRoles = ['ADMIN']
   const userRoles = ['USER']
   const guestRoles = ['GUEST']
@@ -10,9 +10,9 @@ describe('authRelationTransform', () => {
   let guestResult: string[]
 
   beforeEach(() => {
-    adminResult = authRelationTransform(adminRoles)
-    userResult = authRelationTransform(userRoles)
-    guestResult = authRelationTransform(guestRoles)
+    adminResult = rolesRelationTransform(adminRoles)
+    userResult = rolesRelationTransform(userRoles)
+    guestResult = rolesRelationTransform(guestRoles)
   })
 
   it('should to be qual', () => {

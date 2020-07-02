@@ -14,11 +14,12 @@ import { SuccessResDto } from 'src/common/dto'
 import { UserUpdateDto } from './dto/user-update.dto'
 import { UserService } from 'src/service/user/user.service'
 import { AuthSwagger, Auth } from 'src/decorators/auth.decorator'
+import { RolesConstants } from 'src/utils/constant'
 
 @ApiTags('用户信息')
 @Controller('user')
 @AuthSwagger()
-@Auth('admin')
+@Auth(RolesConstants.ADMIN)
 export class UserController {
   constructor(private readonly userService: UserService) {}
 

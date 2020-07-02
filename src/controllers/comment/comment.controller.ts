@@ -14,11 +14,13 @@ import { CommentResDto } from './dto/comment-res-dto'
 import { CommentService } from 'src/service/comment/comment.service'
 import { User } from 'src/decorators/user.decorator'
 import { CommentUpdateDto } from './dto/comment-update.dto'
-import { AuthSwagger } from 'src/decorators/auth.decorator'
+import { AuthSwagger, Auth } from 'src/decorators/auth.decorator'
+import { RolesConstants } from 'src/utils/constant'
 
 @Controller('comment')
 @ApiTags('博客评论')
 @AuthSwagger()
+@Auth(RolesConstants.USER)
 export class CommentController {
   constructor(private readonly commentService: CommentService) {}
 

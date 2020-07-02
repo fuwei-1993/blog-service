@@ -8,14 +8,14 @@ export const jwtConstants = {
   jwtPass: 'jwtPass',
 }
 
-export const AuthConstants = {
-  ADMIN: 'ADMIN',
-  USER: 'USER',
-  GUEST: 'GUEST',
+export enum RolesConstants {
+  ADMIN = 'ADMIN',
+  USER = 'USER',
+  GUEST = 'GUEST',
 }
 
-export const AuthRelation = {
-  ADMIN: [AuthConstants.ADMIN, AuthConstants.USER, AuthConstants.GUEST],
-  USER: [AuthConstants.USER, AuthConstants.GUEST],
-  GUEST: [AuthConstants.GUEST],
+export const RolesRelation = {
+  ADMIN: [RolesConstants.ADMIN, RolesConstants.USER, RolesConstants.GUEST],
+  USER: [RolesConstants.USER, RolesConstants.GUEST],
+  GUEST: [RolesConstants.GUEST],
 }
