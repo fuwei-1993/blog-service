@@ -8,10 +8,10 @@ export const jwtConstants = {
   jwtPass: 'jwtPass',
 }
 
-export enum RolesConstants {
-  ADMIN = 'ADMIN',
-  USER = 'USER',
-  GUEST = 'GUEST',
+export const RolesConstants: NRoles.IRolesConstants = {
+  ADMIN: 'ADMIN',
+  USER: 'USER',
+  GUEST: 'GUEST',
 }
 
 export const RolesRelation = {
