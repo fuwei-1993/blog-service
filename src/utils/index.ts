@@ -1,4 +1,5 @@
 import { ValidationError } from 'class-validator'
+import { AuthRelation } from './constant'
 
 export const handlerRequestError = (errors: ValidationError[]) => {
   return errors.map((error: ValidationError) => {
@@ -10,12 +11,22 @@ export const handlerRequestError = (errors: ValidationError[]) => {
   })
 }
 
+export const authRelationTransform = (userRoles: string[]) => {
+  const result: string[] = []
+  userRoles.forEach(role => {
+    result.push(...AuthRelation[role])
+  })
+  return result
+}
+
 export const matchRoles = <T extends string>(
   roles: string[],
   userRoles: T[],
 ) => {
-  const userRolesMap = {} as Record<T, any>
-  userRoles.forEach(userRole => {
+  const userRolesMap = {} as Record<T, string>
+  const currentUserRoles = authRelationTransform(userRoles)
+
+  currentUserRoles.forEach(userRole => {
     userRolesMap[userRole] = userRole
   })
 
