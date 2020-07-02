@@ -1,8 +1,4 @@
-import {
-  Injectable,
-  HttpException,
-  UnauthorizedException,
-} from '@nestjs/common'
+import { Injectable, HttpException, BadRequestException } from '@nestjs/common'
 import { PassportStrategy } from '@nestjs/passport'
 import { Strategy } from 'passport-local'
 import { AuthService } from 'src/service/auth/auth.service'
@@ -23,6 +19,6 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
       return user
     }
 
-    throw new UnauthorizedException({ message: '用户名或者密码错误' })
+    throw new BadRequestException({ message: '用户名或者密码错误' })
   }
 }

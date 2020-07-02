@@ -38,6 +38,13 @@ export class CommentService {
       .getMany()
   }
 
+  async findAllByUserId(userId: string): Promise<CommentResDto[]> {
+    return await this.commentRepository
+      .createQueryBuilder('comment')
+      .where('comment.userUuid = :userId', { userId })
+      .getMany()
+  }
+
   async create(comment: CommentCreateDto, articleId: string, userId: string) {
     const article = await this.getArticle(articleId)
     const user = await this.getUser(userId)

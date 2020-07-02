@@ -32,6 +32,14 @@ export class CommentController {
     return await this.commentService.findAllByArticleId(articleId)
   }
 
+  @Get('find')
+  @ApiOkResponse({
+    type: [CommentResDto],
+  })
+  async findAllByUserId(@User('id') userId: string): Promise<CommentResDto[]> {
+    return this.commentService.findAllByUserId(userId)
+  }
+
   @Post(':articleId')
   @ApiBody({
     type: CommentCreateDto,

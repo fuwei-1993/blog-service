@@ -5,9 +5,10 @@ import { HttpExceptionFilter } from './filters/http-exception.filter'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { TransformInterceptor } from './interceptors/transform.interceptor'
 import { ValidationPipe } from './pipes/validation.pipe'
+import * as helmet from 'helmet'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule)
+  const app = await NestFactory.create(AppModule, { cors: true })
 
   app.useGlobalInterceptors(
     new TimeoutInterceptor(),
@@ -15,6 +16,8 @@ async function bootstrap() {
   )
   app.useGlobalFilters(new HttpExceptionFilter())
   app.useGlobalPipes(new ValidationPipe())
+
+  app.use(helmet()) //http header 安全
 
   const options = new DocumentBuilder()
     .setTitle('Blog Example')
@@ -34,4 +37,5 @@ async function bootstrap() {
 
   await app.listen(3000)
 }
+
 bootstrap()
