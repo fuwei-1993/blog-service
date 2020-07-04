@@ -5,7 +5,10 @@ import { HttpExceptionFilter } from './filters/http-exception.filter'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { TransformInterceptor } from './interceptors/transform.interceptor'
 import { ValidationPipe } from './pipes/validation.pipe'
+import configuration from './config/configuration'
 import * as helmet from 'helmet'
+
+const { port } = configuration()
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true })
@@ -35,7 +38,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options)
   SwaggerModule.setup('docs', app, document)
 
-  await app.listen(3000)
+  await app.listen(port)
 }
 
 bootstrap()

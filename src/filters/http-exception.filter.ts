@@ -42,7 +42,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
     response
       .header('Content-Type', 'application/json; charset=utf-8')
-      .status(status)
+      .status(HttpStatus.OK)
       .json(errorResponse)
   }
 }
