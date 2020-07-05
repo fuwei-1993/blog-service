@@ -1,8 +1,7 @@
 declare namespace NUser {
-  interface User {
+  interface IUserPayload {
     username: string
-    password: string
-    userId: string
+    sub: string
     roles: string[]
   }
 }

@@ -2,6 +2,7 @@ import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common'
 import { Request } from 'express'
 import { Reflector } from '@nestjs/core'
 import { matchRoles } from 'src/utils'
+import { IUser } from 'src/controllers/user/interface/user.interface'
 
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -14,7 +15,7 @@ export class RolesGuard implements CanActivate {
       this.reflector.get<string[]>('roles', context.getClass()) ?? []
 
     const request: Request = context.switchToHttp().getRequest()
-    const user = request.user as any // todo...
+    const user = request.user as Pick<IUser, 'roles'> // todo...
 
     if (!handlerRoles.length && !classRoles.length) return true
 

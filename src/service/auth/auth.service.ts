@@ -24,7 +24,7 @@ export class AuthService {
 
   async login(user: Partial<IUser>) {
     const { username, uuid, roles } = user
-    const payload = {
+    const payload: NUser.IUserPayload = {
       username,
       sub: uuid,
       roles,
