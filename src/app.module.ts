@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common'
 import { AppService } from './app.service'
 import { ConfigModule, ConfigService } from '@nestjs/config'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { entitiesPath } from './config/entities.config'
+import entitiesPath from './config/entities.config'
 import database from './config/database.config'
 import { rootModules } from './modules'
 import { APP_INTERCEPTOR } from '@nestjs/core'
@@ -13,13 +13,13 @@ import { LoggingInterceptor } from './interceptors/logging.interceptor'
     TypeOrmModule.forRootAsync({
       imports: [
         ConfigModule.forRoot({
-          load: [database],
+          load: [database, entitiesPath],
         }),
       ],
       useFactory: async (config: ConfigService) => {
         return {
           ...config.get<object>('database'),
-          entities: [entitiesPath],
+          entities: config.get<string[]>('entitiesPath'),
           synchronize: true,
         }
       },

@@ -19,3 +19,5 @@ export const RolesRelation = {
   USER: [RolesConstants.USER, RolesConstants.GUEST],
   GUEST: [RolesConstants.GUEST],
 }
+
+export const APP_EMAIL = 'APP_EMAIL'
