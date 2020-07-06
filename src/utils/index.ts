@@ -14,7 +14,7 @@ export const handlerRequestError = (errors: ValidationError[]) => {
 export const rolesRelationTransform = (userRoles: string[]): string[] => {
   const result: string[] = []
   userRoles.forEach(role => {
-    result.push(...RolesRelation[role])
+    result.push(...RolesRelation[role.toUpperCase()])
   })
   return result
 }

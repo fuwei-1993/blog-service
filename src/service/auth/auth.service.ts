@@ -14,7 +14,6 @@ export class AuthService {
     password: string,
   ): Promise<IUser | null> {
     const user = await this.userService.findOneByName(username)
-
     if (user && user.password === password) {
       return user
     }

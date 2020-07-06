@@ -80,6 +80,11 @@ export class User {
   )
   categories: Category[]
 
+  @Column({
+    type: 'simple-array',
+    comment: '角色权限信息',
+    name: 'roles',
+  })
   roles: string[]
 
   @OneToMany(

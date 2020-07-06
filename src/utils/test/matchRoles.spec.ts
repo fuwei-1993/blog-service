@@ -5,12 +5,12 @@ describe('matchRoles', () => {
   let guestResult: boolean
   let totalResult: boolean
 
-  const Roles = ['ADMIN']
+  const userRoles = ['admin']
 
   beforeEach(() => {
-    userResult = matchRoles(['USER'], Roles)
-    guestResult = matchRoles(['GUEST'], Roles)
-    totalResult = matchRoles(['GUEST', 'USER'], Roles)
+    userResult = matchRoles(['USER'], userRoles)
+    guestResult = matchRoles(['GUEST'], userRoles)
+    totalResult = matchRoles(['GUEST', 'USER'], userRoles)
   })
 
   it('should to be equal', () => {
