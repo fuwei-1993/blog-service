@@ -20,4 +20,4 @@ export const RolesRelation = {
   GUEST: [RolesConstants.GUEST],
 }
 
-export const APP_EMAIL = 'APP_EMAIL'
+export const APP_EMAIL_TRANSPORT = 'APP_EMAIL_TRANSPORT'
