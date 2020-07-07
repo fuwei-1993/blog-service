@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common'
 import { APP_EMAIL_TRANSPORT } from 'src/utils/constant'
 import { Transport } from './transport'
-import { ConfigModule } from '@nestjs/config'
+import { ConfigModule, ConfigService } from '@nestjs/config'
 import emailConfig from 'src/config/email.config'
 import { EmailService } from 'src/service/email/email.service'
 
@@ -10,7 +10,10 @@ import { EmailService } from 'src/service/email/email.service'
   providers: [
     {
       provide: APP_EMAIL_TRANSPORT,
-      useClass: Transport,
+      useFactory: (configService: ConfigService) => {
+        return new Transport(configService).get()
+      },
+      inject: [ConfigService],
     },
     EmailService,
   ],

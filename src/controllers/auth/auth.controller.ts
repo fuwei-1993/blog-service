@@ -28,6 +28,7 @@ export class AuthController {
   @Post('test')
   @JwtPass()
   async test() {
+    this.emailService.test()
     return
   }
 }
