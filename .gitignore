@@ -16,3 +16,6 @@ dist/
 
 # error
 yarn-error.log
+
+# rewrite email
+temple.sh
