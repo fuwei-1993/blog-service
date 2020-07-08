@@ -5,15 +5,15 @@ import { Transporter, createTransport } from 'nodemailer'
 import * as smtpTransport from 'nodemailer-smtp-transport'
 
 @Injectable()
-export class Transport {
-  private readonly config: Transporter
+export class TransportProvider {
+  private readonly transporter: Transporter
   constructor(private readonly configService: ConfigService) {
-    this.config = createTransport(
-      smtpTransport(this.configService.get<object>('emailConfig')),
+    this.transporter = createTransport(
+      smtpTransport(this.configService.get<object>('email')),
     )
   }
 
   get() {
-    return this.config
+    return this.transporter
   }
 }
