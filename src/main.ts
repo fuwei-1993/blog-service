@@ -9,7 +9,7 @@ import configuration from './config/configuration'
 import * as helmet from 'helmet'
 import * as rateLimit from 'express-rate-limit'
 
-const { port } = configuration()
+const { port, prefix } = configuration()
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, { cors: true })
@@ -20,6 +20,7 @@ async function bootstrap() {
   )
   app.useGlobalFilters(new HttpExceptionFilter())
   app.useGlobalPipes(new ValidationPipe())
+  app.setGlobalPrefix(prefix)
 
   app.use(helmet()) // http header 安全
 
