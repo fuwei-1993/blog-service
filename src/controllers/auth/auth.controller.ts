@@ -5,15 +5,11 @@ import { User } from 'src/decorators/user.decorator'
 import { ApiBody, ApiTags } from '@nestjs/swagger'
 import { LoginDto } from './dto/login.dto'
 import { JwtPass } from 'src/decorators/jwt-pass.decorator'
-import { EmailService } from 'src/service/email/email.service'
 
 @ApiTags('权限')
 @Controller('login')
 export class AuthController {
-  constructor(
-    private readonly authService: AuthService,
-    private readonly emailService: EmailService,
-  ) {}
+  constructor(private readonly authService: AuthService) {}
 
   @Post()
   @ApiBody({
@@ -23,12 +19,5 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   async login(@User() user: LoginDto) {
     return await this.authService.login(user)
-  }
-
-  @Post('test')
-  @JwtPass()
-  async test() {
-    this.emailService.test()
-    return
   }
 }

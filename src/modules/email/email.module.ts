@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common'
+import { Module, OnModuleInit } from '@nestjs/common'
 import { APP_EMAIL_TRANSPORT } from 'src/utils/constant'
 import { Transport } from './transport'
 import { ConfigModule, ConfigService } from '@nestjs/config'
@@ -19,4 +19,10 @@ import { EmailService } from 'src/service/email/email.service'
   ],
   exports: [EmailService],
 })
-export class EmailModule {}
+export class EmailModule implements OnModuleInit {
+  constructor(private readonly emailService: EmailService) {}
+
+  async onModuleInit() {
+    await this.emailService.verifyConnection()
+  }
+}
