@@ -44,6 +44,7 @@ export class User {
     comment: '用户密码',
     name: 'password',
     nullable: false,
+    select: false,
   })
   password: string
 

@@ -14,8 +14,14 @@ export class UserService {
     private readonly userRepository: Repository<User>,
   ) {}
 
-  async findOneByName(username: string): Promise<UserResDto> {
-    return await this.userRepository.findOne({ username })
+  async findOneByName(
+    username: string,
+  ): Promise<UserResDto & { password: string }> {
+    return await this.userRepository
+      .createQueryBuilder('user')
+      .where('user.username = :username', { username })
+      .addSelect('user.password')
+      .getOne()
   }
 
   async create(user: UserCreateDto) {
@@ -39,7 +45,7 @@ export class UserService {
     const user = await this.userRepository
       .createQueryBuilder('user')
       .leftJoinAndSelect('user.categories', 'category')
-      .where('user.uuid = :id', { id })
+      .where('user.uuid = :id', { uuid: id })
       .getOne()
     return user
   }

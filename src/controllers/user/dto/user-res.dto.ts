@@ -5,14 +5,18 @@ import { ApiPropertyOptional } from '@nestjs/swagger'
 export class UserResDto implements IUser {
   @Exclude()
   id: number
+
+  @ApiPropertyOptional({
+    name: 'id',
+  })
   @Expose({ name: 'id' })
   uuid: string
 
   @ApiPropertyOptional()
   username: string
 
-  @Exclude()
-  password: string
+  // @Exclude()
+  // password: string
 
   @ApiPropertyOptional()
   mobile: string

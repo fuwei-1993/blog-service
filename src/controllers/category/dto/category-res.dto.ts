@@ -9,6 +9,9 @@ export class CategoryResDto implements ICategory {
   @Exclude()
   id: number
 
+  @ApiPropertyOptional({
+    name: 'id',
+  })
   @Expose({ name: 'id' })
   uuid: string
 

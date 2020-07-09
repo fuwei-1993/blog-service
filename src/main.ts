@@ -12,7 +12,7 @@ import * as rateLimit from 'express-rate-limit'
 const { port, prefix } = configuration()
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: true })
+  const app = await NestFactory.create(AppModule, { cors: true, logger: false })
 
   app.useGlobalInterceptors(
     new TimeoutInterceptor(),
