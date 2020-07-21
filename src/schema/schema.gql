@@ -1,0 +1,14 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""作者模块"""
+type Author {
+  firstName: String
+  id: Int!
+  lastName: String
+}
+
+type Query {
+  author(id: Int!): Author!
+}

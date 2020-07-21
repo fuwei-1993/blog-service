@@ -6,13 +6,13 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 import { TransformInterceptor } from './interceptors/transform.interceptor'
 import { ValidationPipe } from './pipes/validation.pipe'
 import configuration from './config/configuration'
-import * as helmet from 'helmet'
-import * as rateLimit from 'express-rate-limit'
+import helmet from 'helmet'
+import rateLimit from 'express-rate-limit'
 
 const { port, prefix } = configuration()
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, { cors: true, logger: false })
+  const app = await NestFactory.create(AppModule, { cors: true })
 
   app.useGlobalInterceptors(
     new TimeoutInterceptor(),

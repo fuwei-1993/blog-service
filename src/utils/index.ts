@@ -1,5 +1,6 @@
 import { ValidationError } from 'class-validator'
 import { RolesRelation } from './constant'
+import { ExecutionContext, ContextType } from '@nestjs/common'
 
 export const handlerRequestError = (errors: ValidationError[]) => {
   return errors.map((error: ValidationError) => {
@@ -31,4 +32,12 @@ export const matchRoles = <T extends string>(
   })
 
   return roles.some(role => userRolesMap[role])
+}
+
+export const isGraphql = (context: ExecutionContext): boolean => {
+  const contextType = context.getType()
+
+  const graphql: ContextType = 'graphql' as typeof contextType
+
+  return contextType === graphql
 }
