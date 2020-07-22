@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 
 import { Transporter, createTransport } from 'nodemailer'
-import smtpTransport from 'nodemailer-smtp-transport'
+import * as smtpTransport from 'nodemailer-smtp-transport'
 
 @Injectable()
 export class TransportProvider {
