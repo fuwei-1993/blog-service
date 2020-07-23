@@ -9,6 +9,14 @@ type Author {
   lastName: String
 }
 
+type Mutation {
+  addAuthor(id: Int!): Author!
+}
+
 type Query {
   author(id: Int!): Author!
+}
+
+type Subscription {
+  authorAdded: Author!
 }

@@ -9,6 +9,10 @@ import { AuthorsResolver } from './author/model/author.resolver'
     GraphQLModule.forRoot({
       autoSchemaFile: join(process.cwd(), 'src/schema/schema.gql'),
       sortSchema: true,
+      installSubscriptionHandlers: true,
+      subscriptions: {
+        keepAlive: 5000,
+      },
     }),
   ],
   providers: [AuthorsResolver],
