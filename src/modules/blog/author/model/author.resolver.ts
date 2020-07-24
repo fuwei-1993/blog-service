@@ -23,7 +23,9 @@ export class AuthorsResolver {
     return author
   }
 
-  @Mutation(() => Author)
+  @Mutation(() => Author, {
+    name: 'AddAuthor',
+  })
   async addAuthor(@Args('id', { type: () => Int }) id: number) {
     const author = plainToClass(Author, {
       firstName: '123',
@@ -34,7 +36,12 @@ export class AuthorsResolver {
     return author
   }
 
-  @Subscription(() => Author)
+  @Subscription(() => Author, {
+    filter: (...arg) => {
+      console.log(arg)
+      return true
+    },
+  })
   authorAdded() {
     console.log(213)
     return pubSub.asyncIterator('authorAdded')

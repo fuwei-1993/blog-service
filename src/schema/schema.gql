@@ -10,7 +10,7 @@ type Author {
 }
 
 type Mutation {
-  addAuthor(id: Int!): Author!
+  AddAuthor(id: Int!): Author!
 }
 
 type Query {
