@@ -37,6 +37,7 @@ export class AuthorsResolver {
   }
 
   @Subscription(() => Author, {
+    name: 'TestSubscription',
     filter: (...arg) => {
       console.log(arg)
       return true

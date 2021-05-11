@@ -18,5 +18,5 @@ type Query {
 }
 
 type Subscription {
-  authorAdded: Author!
+  TestSubscription: Author!
 }
