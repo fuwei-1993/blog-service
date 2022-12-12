@@ -28,7 +28,7 @@
     "@nestjs/graphql": "^7.5.5",
     "@nestjs/jwt": "^7.0.0",
     "@nestjs/passport": "^7.0.0",
-    "@nestjs/platform-express": "^7.0.0",
+    "@nestjs/platform-express": "^9.2.1",
     "@nestjs/swagger": "^4.5.9",
     "@nestjs/typeorm": "^7.1.0",
     "@types/nodemailer": "^6.4.0",
